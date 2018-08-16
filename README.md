@@ -21,6 +21,3 @@ If for some reason that doesn't work, you can manually download it from **[here]
 
 ### Run the script
 `./Illuminator.py <ip address>`
-
-
-	[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
