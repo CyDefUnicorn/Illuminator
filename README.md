@@ -17,7 +17,7 @@ You will need to install **python-nmap** using pip to aid in using Nmap with Pyt
 
 `pip install python-nmap`
 
-If for some reason that doesn't work, you can manually download it from [here](https://xael.org/pages/python-nmap-en.html)and install it 
+If for some reason that doesn't work, you can manually download it from **[here](https://xael.org/pages/python-nmap-en.html)** and install it 
 
 ### Run the script
 `./Illuminator.py <ip address>`
