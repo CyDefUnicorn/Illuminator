@@ -13,5 +13,9 @@ Illuminator will start with an Nmap scan using the switch -sV, and generate a fo
 
 All the listed tools should already be available in **Kali Linux**
 
+You will need to install **python-nmap** using pip to aid in using Nmap with Python
+
+`pip install python-nmap`
+
 ### Run the script
 `./Illuminator.py <ip address>`
