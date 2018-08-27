@@ -1,6 +1,6 @@
 # Illuminator
 
-Illuminator is designed to perform a comprehensive scan on a single IP using the tools that are listed below to save time when attempting to gather information on the specific host.
+Illuminator is a Python 3 based script that is designed to perform a comprehensive scan on a single IP using the tools that are listed below to save time when attempting to gather information on the specific host.
 
 *Nmap*  
 *Nikto*  
