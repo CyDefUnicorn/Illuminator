@@ -21,3 +21,8 @@ If for some reason that doesn't work, you can manually download it from **[here]
 
 ### Run the script
 `./Illuminator.py <ip address>`
+
+### Example
+![image](https://user-images.githubusercontent.com/22828882/44691637-7223d000-aa2d-11e8-9729-094cc0569a12.png)
+
+### Scan Results
