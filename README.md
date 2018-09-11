@@ -1,6 +1,6 @@
 # Illuminator
 
-Illuminator is a Python 3 based script that is designed to perform a comprehensive scan on a single IP using the tools that are listed below to save time when attempting to gather information on the specific host.
+Illuminator is a Python 3 based, OSCP inspired script that is designed to perform a comprehensive scan on a single IP using the tools that are listed below to save time when attempting to gather information on the specific host. As time goes by, I will update the script and add more features and capabilities. It's not perfect, but it's a start :)
 
 *Nmap*  
 *Nikto*  
@@ -24,3 +24,6 @@ If for some reason that doesn't work, you can manually download it from **[here]
 
 ### Example
 ![image](https://user-images.githubusercontent.com/22828882/44691637-7223d000-aa2d-11e8-9729-094cc0569a12.png)
+
+###	Soon to Add
+*GoBuster*
