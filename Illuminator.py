@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import socket
 import nmap
@@ -12,53 +12,53 @@ from os import path, system, mkdir
 #Function - Run Nmap FTP Anonymous and Bruteforce Scans
 def run_nmap_ftp(ip, foldername):
     #Attempt FTP Anonymous Login
-    print ("\n[+] FTP Port 21 Detected\n")
-    print ("\t[-] Test 1: Starting FTP Anonymous Login Attempt..\n")
+    print "\n[+] FTP Port 21 Detected\n"
+    print "\t[-] Test 1: Starting FTP Anonymous Login Attempt..\n"
     system("nmap --script=ftp-anon --script-args ftp-anon.maxlist=-1 -p 21 \
     %s 2>&1 > %s" % (ip,path.join(foldername, "FTP-Anonymous-Scan")))
-    print ("\t\t[-] FTP Anonymous Login Attempt Complete.\n")
+    print "\t\t[-] FTP Anonymous Login Attempt Complete.\n"
     #Attempt FTP Bruteforce
-    print ("\t[-] Test 2: FTP Brute Force Attempt..\n")
+    print "\t[-] Test 2: FTP Brute Force Attempt..\n"
     system("nmap --script ftp-brute -p 21 \
     %s 2>&1 > %s" % (ip,path.join(foldername, "FTP-Bruteforce-Scan")))
-    print ("\t\t[-] FTP Brute Force Attempt Complete.")
+    print "\t\t[-] FTP Brute Force Attempt Complete."
 
 #Function - Run Nmap NSE script for SMB User Enumeration
 def run_nmap_smb_users(ip, foldername):
-    print ("\n[+] SMB Port 445 Detected - Starting SMB Enum Users Scan..\n")
+    print "\n[+] SMB Port 445 Detected - Starting SMB Enum Users Scan..\n"
     system('nmap --script smb-enum-users.nse -p 139,445 192.168.62.134 | grep -v "Account disabled" \
     | grep "Full name" | cut -d " " -f 7,10,11 2>&1 > %s' % (ip,path.join(foldername, "Nmap-SMB-Users")))
-    print ("\t[-] SMB Enum Users NSE Scan Complete.")
+    print "\t[-] SMB Enum Users NSE Scan Complete."
 
 
 #Function - Run Nikto
 def run_nikto(ip, foldername):
-    print ("\n[+] Starting Nikto Scan\n")
+    print "\n[+] Starting Nikto Scan\n"
     #call nikto and run command against given IP
     system("nikto -h %s 2>&1 > %s" % (ip,path.join(foldername, "Nikto")))
-    print ("\t[-] Nikto Scan Complete.")
+    print "\t[-] Nikto Scan Complete."
 
 
 #Function - Run SMTP scan    
 def run_mailscan(ip, foldername):
-    print ("\n[+] SMTP Port 25 Detected - Starting SMTP User Enumeration..\n")
+    print "\n[+] SMTP Port 25 Detected - Starting SMTP User Enumeration..\n"
     system("smtp-user-enum -M VRFY -U /usr/share/metasploit-framework/data/wordlists/unix_users.txt -t \
     %s 2>&1 > %s" % (ip,path.join(foldername, "SMTP-User-Unum")))
-    print ("\t[-] SMTP User Enumeration Complete.")
+    print "\t[-] SMTP User Enumeration Complete."
 
 
 #Function - Run Fierce for DNS
 def run_fierce(ip, foldername):
-    print ("\n[+] Starting Fierce Scan\n")
+    print "\n[+] Starting Fierce Scan\n"
     system("fierce -dns %s 2>&1 > %s" % (ip,path.join(foldername, "Fierce")))
-    print ("\t[-] DNS enumeration Complete.")
+    print "\t[-] DNS enumeration Complete."
 
 
 #Function - Run Enum4Linux
 def run_enum4linux(ip, foldername):
-    print ("\n[+] Starting Host enumeration using Enum4Linux\n")
+    print "\n[+] Starting Host enumeration using Enum4Linux\n"
     system("enum4linux %s 2>&1 > %s" % (ip,path.join(foldername, "Enum4Linux")))
-    print ("  [-] Host enumeration Complete.")
+    print "  [-] Host enumeration Complete."
 
 
 #Function - Run Nmap scan
@@ -104,7 +104,7 @@ def process_scan(nmap_report):
             print(pserv)
         
         #Display completion of Nmap scan
-        print ("\n  [-] Nmap Scan Complete.")
+        print "\n  [-] Nmap Scan Complete."
          
          
 #Defining global variables
@@ -136,11 +136,11 @@ Usage: Illuminator.py <IP Address>
 #Grab IP Address as argument
 if len(sys.argv)==2:
     ip = sys.argv[1]
-    print ("\n[+] Reading IP Address")
+    print "\n[+] Reading IP Address"
 
 
 #Banner - Pass IP to Nmap then start scanning
-print ("\n[+] Passing " + ip + " to Nmap...")
+print "\n[+] Passing " + ip + " to Nmap..."
 print("\n[+] Starting Nmap Scan\n")
 
 
@@ -162,7 +162,7 @@ if report:
     #Run enum4linux seperately
     run_enum4linux(ip, foldername)
     
-    print ("\033[1;32;40m\n[**] Reports Completed [**]\n")
+    print "\033[1;32;40m\n[**] Reports Completed [**]\n"
 else:
     print("No results returned")
 
