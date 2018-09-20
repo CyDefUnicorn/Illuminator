@@ -26,7 +26,7 @@ def run_nmap_ftp(ip, foldername):
 #Function - Run Nmap NSE script for SMB User Enumeration
 def run_nmap_smb_users(ip, foldername):
     print "\n[+] SMB Port 445 Detected - Starting SMB Enum Users Scan..\n"
-    system('nmap --script smb-enum-users.nse -p 139,445 192.168.62.134 | grep -v "Account disabled" \
+    system('nmap --script smb-enum-users.nse -p 139,445 %s | grep -v "Account disabled" \
     | grep "Full name" | cut -d " " -f 7,10,11 2>&1 > %s' % (ip,path.join(foldername, "Nmap-SMB-Users")))
     print "\t[-] SMB Enum Users NSE Scan Complete."
 
