@@ -5,8 +5,8 @@ Illuminator is a Python based, OSCP inspired script that is designed to perform 
 *Nmap*  
 *Nikto*  
 *Fierce*  
-*NBTScan*
-*GoBuster* 
+*NBTScan*  
+*GoBuster*  
 *SNMPcheck*  
 *Enum4Linux*  
 
