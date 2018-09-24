@@ -15,3 +15,10 @@
 - Added FTP Bruteforce Login Attempt
 - Removed spaces by the print statements and added tabs instead
 - Added target IP address to be part of the generated folder name to distinguish from different IP scans
+
+**Version 1.3:**
+- Added FTP Anonymous Directory Enumeration
+- Changed SNMPWalk to SNMPCheck
+- Change Nmap scanning command to `-n -sV --min-rate 5000 --max-retries 2 -p-` for faster scanning
+- Removed the color coding at the end of the scan because it throws off the terminal coloring
+- Fixed general bugs in code
