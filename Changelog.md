@@ -17,6 +17,7 @@
 - Added target IP address to be part of the generated folder name to distinguish from different IP scans
 
 **Version 1.3:**
+- Added GoBuster
 - Added FTP Anonymous Directory Enumeration
 - Changed SNMPWalk to SNMPCheck
 - Change Nmap scanning command to `-n -sV --min-rate 5000 --max-retries 2 -p-` for faster scanning
