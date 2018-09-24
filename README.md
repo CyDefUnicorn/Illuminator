@@ -13,9 +13,11 @@ Illuminator will start with an Nmap scan using the switch -sV, and generate a fo
 
 All the listed tools should already be available in **Kali Linux**
 
-You will need to install **python-nmap** using pip to aid in using Nmap with Python
+You will need to install **python-nmap** using pip to aid in using Nmap with Python, along with Nmap libraries for parsing, in case you get a "libnmap.parser" error if you don' already have it installed.
 
 `pip install python-nmap`
+
+`pip install python-libnmap`
 
 If for some reason that doesn't work, you can manually download it from **[here](https://xael.org/pages/python-nmap-en.html)** and install it 
 
