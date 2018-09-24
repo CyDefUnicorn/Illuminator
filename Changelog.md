@@ -20,6 +20,6 @@
 - Added GoBuster
 - Added FTP Anonymous Directory Enumeration
 - Changed SNMPWalk to SNMPCheck
-- Change Nmap scanning command to `-n -sV --min-rate 5000 --max-retries 2 -p-` for faster scanning
+- Change Nmap scanning command to `-n -sV --min-rate 5000 --max-retries 2 --open` for faster scanning
 - Removed the color coding at the end of the scan because it throws off the terminal coloring
 - Fixed general bugs in code
