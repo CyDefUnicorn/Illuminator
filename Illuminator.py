@@ -13,67 +13,74 @@ from os import path, system, mkdir
 def run_nmap_ftp(ip, foldername):
     #Attempt FTP Anonymous Login
     print "\n[+] FTP Port 21 Detected\n"
-    print "\t[-] Test 1: Starting FTP Anonymous Login Attempt..\n"
+    print "\t[-] Scan 1: Starting FTP Anonymous Login Attempt..\n"
     system("nmap --script=ftp-anon --script-args ftp-anon.maxlist=-1 -p 21 \
-    %s 2>&1 > %s" % (ip,path.join(foldername, "FTP-Anonymous-Scan")))
-    print "\t\t[-] FTP Anonymous Login Attempt Complete.\n"
+    %s 2>/dev/null > %s" % (ip,path.join(foldername, "FTP-Anonymous-Scan")))
+    print "\t\t[!] FTP Anonymous Login Attempt Complete.\n"
 
     #Attempt FTP Anonymous Directory Enumeration
-    print "\t[-] Test 2: FTP Anonymous Directory Enumeration..\n"
+    print "\t[-] Scan 2: FTP Anonymous Directory Enumeration..\n"
     system("nmap -n -p 21 --script=ftp-anon.nse \
-    %s 2>&1 > %s" % (ip,path.join(foldername, "FTP-Anonymous-Dir-Enum")))
-    print "\t\t[-] FTP Anonymous Directory Enumeration Complete."
+    %s 2>/dev/null > %s" % (ip,path.join(foldername, "FTP-Anonymous-Dir-Enum")))
+    print "\t\t[!] FTP Anonymous Directory Enumeration Complete.\n"
 
     #Attempt FTP Bruteforce
-    print "\t[-] Test 3: FTP Brute Force Attempt..\n"
+    print "\t[-] Scan 3: FTP Brute Force Attempt..\n"
     system("nmap --script ftp-brute -p 21 \
-    %s 2>&1 > %s" % (ip,path.join(foldername, "FTP-Bruteforce-Scan")))
-    print "\t\t[-] FTP Brute Force Attempt Complete."
+    %s 2>/dev/null > %s" % (ip,path.join(foldername, "FTP-Bruteforce-Scan")))
+    print "\t\t[!] FTP Brute Force Attempt Complete.\n"
 
 
 #Function - Run Nmap NSE script for SMB User Enumeration
 def run_nmap_smb_users(ip, foldername):
     print "\n[+] SMB Ports Detected - Starting SMB Enum Users Scan..\n"
     system('nmap --script=smb-enum-users.nse -p 139,445 %s | grep -v "Account disabled" \
-    | grep "Full name" | cut -d " " -f 7,10,11 2>&1 > %s' % (ip,path.join(foldername, "Nmap-SMB-Users")))
-    print "\t[-] SMB Enum Users Scan Complete."
+    | grep "Full name" | cut -d " " -f 7,10,11 2>/dev/null > %s' % (ip,path.join(foldername, "Nmap-SMB-Users")))
+    print "\t[!] SMB Enum Users Scan Complete.\n"
 
 
-#Function - Run Nikto
-def run_nikto(ip, foldername):
-    print "\n[+] Starting Nikto Scan\n"
+#Function - Run Nikto & GoBuster
+def run_webenum(ip, foldername):
+    print "\n[+] Web Ports Detected. Starting Nikto & GoBuster\n"
+    print "\t[+] Scan 1 - Starting Nikto..\n"
     #call nikto and run command against given IP
-    system("nikto -h %s 2>&1 > %s" % (ip,path.join(foldername, "Nikto")))
-    print "\t[-] Nikto Scan Complete."
+    system("nikto -h %s 2>/dev/null > %s" % (ip,path.join(foldername, "Nikto")))
+    print "\t\t[-] Nikto Scan Complete.\n"
+
+    print "\t[+] Scan 2 -Starting GoBuster..\n"
+    #call GoBuster and run command against given IP
+    system("gobuster -u %s -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 30 \
+    2>/dev/null > %s" % (ip,path.join(foldername, "GoBuster")))
+    print "\t\t[-] GoBuster Scan Complete.\n"
 
 
 #Function - Run SMTP scan    
 def run_mailscan(ip, foldername):
     print "\n[+] SMTP Port 25 Detected - Starting SMTP User Enumeration..\n"
     system("smtp-user-enum -M VRFY -U /usr/share/metasploit-framework/data/wordlists/unix_users.txt -t \
-    %s 2>&1 > %s" % (ip,path.join(foldername, "SMTP-User-Unum")))
-    print "\t[-] SMTP User Enumeration Complete."
+    %s 2>/dev/null > %s" % (ip,path.join(foldername, "SMTP-User-Unum")))
+    print "\t[!] SMTP User Enumeration Complete.\n"
 
 
 #Function - Run Fierce for DNS
 def run_fierce(ip, foldername):
-    print "\n[+] Starting Fierce Scan\n"
-    system("fierce -dns %s 2>&1 > %s" % (ip,path.join(foldername, "Fierce")))
-    print "\t[-] DNS enumeration Complete."
+    print "\n[+] Starting Fierce Scan..\n"
+    system("fierce -dns %s 2>/dev/null > %s" % (ip,path.join(foldername, "Fierce")))
+    print "\t[!] DNS enumeration Complete.\n"
 
 
 #Function - Run SNMPCheck for SNMP
 def run_snmpcheck(ip, foldername):
-    print "\n[+] SNMP Port 161 Detected - Starting SNMPCheck Scan\n"
-    system("snmpcheck-1.9.rb %s 2>&1 > %s" % (ip,path.join(foldername, "SNMPCheck")))
-    print "\t[-] SNMP enumeration Complete."
+    print "\n[+] SNMP Port 161 Detected - Starting SNMPCheck Scan..\n"
+    system("snmpcheck-1.9.rb %s 2>/dev/null > %s" % (ip,path.join(foldername, "SNMPCheck")))
+    print "\t[!] SNMP enumeration Complete.\n"
 
 
 #Function - Run Enum4Linux
 def run_enum4linux(ip, foldername):
-    print "\n[+] Starting SMB enumeration using Enum4Linux\n"
-    system("enum4linux %s 2>&1 > %s" % (ip,path.join(foldername, "Enum4Linux")))
-    print "  [-] SMB enumeration Complete."
+    print "\n[+] Starting SMB enumeration using Enum4Linux..\n"
+    system("enum4linux %s 2>/dev/null > %s" % (ip,path.join(foldername, "Enum4Linux")))
+    print "  [!] SMB enumeration Complete.\n"
 
 
 #Function - Run Nmap scan
@@ -124,7 +131,7 @@ def process_scan(nmap_report):
          
 #Defining global variables
 scanned_ports = []
-port_map = {80:run_nikto,25:run_mailscan,110:run_mailscan,995:run_mailscan,
+port_map = {80:run_webenum,25:run_mailscan,110:run_mailscan,995:run_mailscan,
             53:run_fierce,139:run_nmap_smb_users,21:run_nmap_ftp,161:run_snmpcheck}
 
 
@@ -140,6 +147,7 @@ Illuminator utilizes the following tools:
  * Nikto
  * Fierce
  * NBTScan
+ * GoBuster
  * SNMPCheck
  * Enum4Linux
 
@@ -167,7 +175,7 @@ foldername = "Illuminator-%s" % ip
 mkdir (foldername)
 
 
-report = nmap_scan(ip, "-n -sV --min-rate 5000 --max-retries 2 -p-")
+report = nmap_scan(ip, "-n -sT -sU -sV --min-rate 5000 --max-retries 2 --open")
 if report:
     process_scan(report)
     for scanned_port in scanned_ports:
@@ -180,4 +188,3 @@ if report:
     print "\n[**] Reports Completed [**]\n"
 else:
     print("No results returned")
-
