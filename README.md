@@ -6,7 +6,7 @@ Illuminator is a Python based, OSCP inspired script that is designed to perform 
 *Nikto*  
 *Fierce*  
 *NBTScan*  
-*Snmpwalk*  
+*SNMPcheck*  
 *Enum4Linux*  
 
 Illuminator will start with an Nmap scan using the switch -sV, and generate a folder which will contain a text file with the results from each of the tools utilized. Depending on which ports and protocols are open, and the services that are running on those ports,  Illuminator will utilize the next tool from the list based on those ports and attempt to shed light on more information to assist you in the host enumeration process.
